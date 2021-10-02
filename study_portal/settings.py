@@ -10,11 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
-application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
-
 from pathlib import Path
 import os
 #SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -26,6 +21,12 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
     # Add to this list all the locations containing your static files
+)
+
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
 )
 
 
@@ -136,7 +137,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -144,7 +145,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[BASE_DIR/"static"]
+# STATICFILES_DIRS=[BASE_DIR/"static"]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
